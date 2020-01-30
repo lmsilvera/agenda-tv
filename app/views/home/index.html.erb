@@ -1,0 +1,33 @@
+<% if user_signed_in? %>
+  <li>
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+  </li>
+<% end %>
+
+<h1>Agenda TV</h1>
+<p>Find TV Channels & TV Shows</p>
+
+<% if user_signed_in? %>
+  <div>
+    <%= form_tag root_path, method: :get do |f| %>
+      <%= text_field_tag :search, params[:search], {placeholder: 'Channel/TV Show'} %>
+      <%= submit_tag :Search %>
+    <% end %>
+  </div>
+
+  <br>
+
+  <div class="search-result">
+    <% @result.each do |rt| %>
+      <div class="show">
+        <h3><%= rt.name %></h3>
+        <p class="info"><%= rt.class.name %></p>
+        <% if rt.is_a? Show %>
+          <div class="mark" id="<%= rt.class.name %>-<%= rt.id %>-link">
+            <%= link_to "Mark as Favourite", favorites_path(show_id: rt.id), method: :post, remote: true %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

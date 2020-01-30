@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name %></h1>
+    <p>
+      TV Show: <%= @show_time.show.name %><%= @show_time.timing %>, in <%= @show_time.channel.name %>.
+    </p>
+    <p>
+      At: <%= @show_time.timing %>
+    </p>
+    <p>
+      Channel: <%= @show_time.channel.name %>.
+    </p>
+    <p>Enjoy it!</p>
+  </body>
+</html>
